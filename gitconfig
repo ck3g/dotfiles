@@ -1,0 +1,18 @@
+[user]
+  name = Vitaly Tatarintsev
+  email = Kalastiuz@gmail.com
+[github]
+  user = ck3g
+[code]
+  editor = gvim
+[color]
+  ui = true
+[alias]
+  st = status
+  co = checkout
+  aa = add --all
+  ff = flow feature
+  l = !~/.githelpers
+  dc = diff --cached
+[core]
+  editor = vim

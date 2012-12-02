@@ -16,7 +16,7 @@
 
 ## zsh
 
-Command prompt customized by (How to Customize You Command Prompt)[http://net.tutsplus.com/tutorials/tools-and-tips/how-to-customize-your-command-prompt/] tutorial.
+Command prompt customized by [How to Customize You Command Prompt](http://net.tutsplus.com/tutorials/tools-and-tips/how-to-customize-your-command-prompt/) tutorial.
 
 
 ## Uninstall

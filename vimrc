@@ -304,6 +304,9 @@ else
     endif
 endif
 
+" add spell checking and automatic wrapping at the recommended 72 columns to you commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 " PeepOpen uses <Leader>p as well so you will need to redefine it so something
 " else in your ~/.vimrc file, such as:
 " nmap <silent> <Leader>q <Plug>PeepOpen
@@ -429,7 +432,7 @@ endfunction
 
 function! RunNearestTest()
     let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
+    call RunTestFile(":" . spec_line_number)
 endfunction
 
 function! SetTestFile()
@@ -458,3 +461,5 @@ function! RunTests(filename)
         end
     end
 endfunction
+
+

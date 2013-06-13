@@ -8,8 +8,9 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="doubleend"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ack="ack-grep"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -29,9 +30,10 @@ ZSH_THEME="doubleend"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby rvm)
+plugins=(git rails ruby rvm battery web-search)
 
 source $ZSH/oh-my-zsh.sh
+source /etc/environment
 
 # disable auto correct
 unsetopt correct_all
@@ -42,7 +44,10 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+PATH=$PATH:$HOME/Applications
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$JAVA_HOME # Add JAVA_HOME for keytool (cacert.org)
+PATH=$PATH:/home/ck3g/Applications/phantomjs/bin
 
 export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 

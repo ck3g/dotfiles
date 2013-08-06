@@ -389,6 +389,7 @@ map <C-l> <C-w>l
 let ScreenShot = {'Icon':0, 'Credits':0, 'force_background':'#000000'}
 
 au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.rabl} set ft=ruby
+au BufRead,BufNewFile {*.hamlbars} set ft=haml
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET

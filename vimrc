@@ -419,4 +419,5 @@ if filereadable("Gemfile")
   endif
 endif
 
+map <leader>n :sp ~/Dropbox/notes.txt<CR>
 

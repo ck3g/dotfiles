@@ -18,6 +18,7 @@
 
 Command prompt customized by [How to Customize You Command Prompt](http://net.tutsplus.com/tutorials/tools-and-tips/how-to-customize-your-command-prompt/) tutorial.
 
+[Solarized Colorscheme for Gnome Terminal](https://github.com/sigurdga/gnome-terminal-colors-solarized)
 
 ## Uninstall
 

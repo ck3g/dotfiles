@@ -14,5 +14,7 @@
   ff = flow feature
   l = !~/.githelpers
   dc = diff --cached
+  rc = rebase --continue
 [core]
   editor = vim
+  excludesfile = /home/ck3g/.gitignore_global

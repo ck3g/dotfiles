@@ -11,6 +11,7 @@
     mv ~/dotfiles/gitconfig ~/.gitconfig
     mv ~/dotfiles/githelpers ~/.githelpers
     mv ~/dotfiles/ackrc ~/.ackrc
+    mv ~/dotfiles/gitignore_global ~/.gitignore_global
     rm -rf ~/dotfiles
 
 ## vimfiles
@@ -30,6 +31,7 @@ Command prompt customized by [How to Customize You Command Prompt](http://net.tu
     rm ~/.gitconfig
     rm ~/.githelpers
     rm ~/.ackrc
+    rm ~/.gitignore_global
 
 Then reopen terminal window
 

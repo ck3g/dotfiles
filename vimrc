@@ -421,3 +421,5 @@ endif
 
 map <leader>n :sp ~/Dropbox/notes.txt<CR>
 
+" Map comment selection
+map <leader><leader> gc

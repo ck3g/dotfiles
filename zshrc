@@ -39,7 +39,7 @@ source /etc/environment
 unsetopt correct_all
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -47,22 +47,9 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 PATH=$PATH:$HOME/Applications
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$JAVA_HOME # Add JAVA_HOME for keytool (cacert.org)
-PATH=$PATH:/home/ck3g/Applications/phantomjs/bin
+PATH=$PATH:/home/ck3g
 
 export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
 export EDITOR=gvim
-
-# GdeDK access keys
-export GDEDK_TWITTER_CONSUMER_KEY=3dSPw7aCP15g6cQ96HG4g
-export GDEDK_TWITTER_CONSUMER_SECRET=OfzBWCoq10Mq1FNs04q1ouvryJa82KxVwA1CHYZCpg
-
-export GDEDK_FB_CONSUMER_KEY=420136191361429
-export GDEDK_FB_CONSUMER_SECRET=44e73e8d07b6ade6cb13179d0c1b29b2
-
-export GDEDK_VK_CONSUMER_KEY=3066082
-export GDEDK_VK_CONSUMER_SECRET=tcYadXzdAglPGZgsPXLz
-
-export GDEDK_GOOGLE_CONSUMER_KEY=770542715303.apps.googleusercontent.com
-export GDEDK_GOOGLE_CONSUMER_SECRET=asHiVD07AO7Hfhr4dQTQ6et-
 

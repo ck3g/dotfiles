@@ -12,6 +12,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
 set nocompatible
+set clipboard=unnamed
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -29,8 +30,10 @@ set number      "add line numbers
 set showbreak=...
 set wrap linebreak nolist
 
-set winwidth=85
-set winheight=28
+" set winwidth=85
+" set winheight=28
+
+let mapleader=","
 
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
@@ -264,6 +267,8 @@ set hidden
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
 
+let macvim_skip_colorscheme=1
+
 if has("gui_running")
     if has("gui_gnome")
         set term=gnome-256color
@@ -274,7 +279,11 @@ if has("gui_running")
     endif
 
     if has("gui_mac") || has("gui_macvim")
-        set guifont=Menlo:h14
+
+        set guifont=Menlo:h15
+        colorscheme codeschool
+        set lines=55
+        set columns=192
         " key binding for Command-T to behave properly
         " uncomment to replace the Mac Command-T key to Command-T plugin
         "macmenu &File.New\ Tab key=<nop>
@@ -295,13 +304,12 @@ else
     "dont load csapprox if there is no gui support - silences an annoying warning
     let g:CSApprox_loaded = 1
 
-    if $COLORTERM == 'gnome-terminal'
-      "tell the term has 256 colors
-      set t_Co=256
 
-      colorscheme xoria256
-      set guitablabel=%M%t
-    endif
+    "tell the term has 256 colors
+    set t_Co=256
+
+    colorscheme xoria256
+    set guitablabel=%M%t
 endif
 
 " add spell checking and automatic wrapping at the recommended 72 columns to you commit messages
@@ -413,9 +421,9 @@ map <Leader>A :call RunAllSpecs()<CR>
 
 if filereadable("Gemfile")
   if has("gui_running")
-    let g:rspec_command = "!zeus rspec --no-color {spec}"
+    let g:rspec_command = "!bundle exec rspec --no-color {spec}"
   else
-    let g:rspec_command = "!zeus rspec {spec}"
+    let g:rspec_command = "!bundle exec rspec {spec}"
   endif
 endif
 

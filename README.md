@@ -7,6 +7,8 @@
     mv ~/dotfiles/vim ~/.vim
     mv ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
     mv ~/dotfiles/vimrc ~/.vimrc
+    mv ~/dotfiles/gvimrc ~/.gvimrc
+    mv ~/dotfiles/gemrc ~/.gemrc
     mv ~/dotfiles/zshrc ~/.zshrc
     mv ~/dotfiles/gitconfig ~/.gitconfig
     mv ~/dotfiles/githelpers ~/.githelpers

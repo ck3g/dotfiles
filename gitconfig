@@ -17,4 +17,6 @@
   rc = rebase --continue
 [core]
   editor = vim
-  excludesfile = /home/ck3g/.gitignore_global
+	excludesfile = /Users/ck3g/.gitignore_global
+[push]
+	default = simple

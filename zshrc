@@ -10,7 +10,9 @@ ZSH_THEME="doubleend"
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ack="ack-grep"
+# alias ack="ack-grep"
+alias be="bundle exec"
+alias vim="/usr/local/bin/vim"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,7 +35,8 @@ alias ack="ack-grep"
 plugins=(git rails ruby rvm battery web-search)
 
 source $ZSH/oh-my-zsh.sh
-source /etc/environment
+export ZSH=$HOME/.oh-my-zsh
+# source /etc/environment
 
 # disable auto correct
 unsetopt correct_all
@@ -51,5 +54,15 @@ PATH=$PATH:/home/ck3g
 
 export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
-export EDITOR=gvim
+export EDITOR=mvim
 
+eval "$(rbenv init - zsh)"
+
+export AWS_ACCESS_KEY_ID="AKIAJPIRIFHT442CLRCA"
+export AWS_SECRET_ACCESS_KEY="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"
+export FOG_DIRECTORY="auresodev"
+export FOG_REGION="ap-southeast-1"
+export BONSAI_URL="localhost:9200"
+export CDMS_POSTGRES_URL="postgres://cexlvtfejiqlfm:byllisaouegni2CtDk1ThJow_w@ec2-54-235-192-45.compute-1.amazonaws.com:5432/da6v6b3eijo43f"
+# export CODECLIMATE_REPO_TOKEN=2d72497256a44a5d99888c7175263f3630376c5dff5effcdeed2f6d9330f212d
+export TEST_ENV_NUMBER=4

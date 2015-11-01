@@ -20,3 +20,7 @@
 	excludesfile = /Users/ck3g/.gitignore_global
 [push]
 	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

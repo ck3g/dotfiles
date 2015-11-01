@@ -30,7 +30,7 @@ set number      "add line numbers
 set showbreak=...
 set wrap linebreak nolist
 
-" set winwidth=85
+set winwidth=85
 " set winheight=28
 
 let mapleader=","
@@ -337,6 +337,10 @@ noremap Q gq
 
 "make Y consistent with C and D
 nnoremap Y y$
+
+let g:vimrubocop_config = '~/.rubocop.yml'
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
 
 "bindings for ragtag
 inoremap <M-o>       <Esc>o

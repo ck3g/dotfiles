@@ -431,7 +431,7 @@ if filereadable("Gemfile")
   endif
 endif
 
-map <leader>n :sp ~/Dropbox/notes.txt<CR>
+map <leader>n :sp ~/Dropbox/babbel_notes.txt<CR>
 
 " Map comment selection
 map <leader><leader> gc

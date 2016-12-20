@@ -15,6 +15,11 @@ alias zshconfig="vim ~/.zshrc"
 alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
 
+## Babbel repo alliases
+alias update_develop="git pull --rebase origin develop"
+alias update_master="git pull --rebase origin master"
+
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -60,8 +65,9 @@ export EDITOR=vim
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+ssh-add -K ~/.ssh/id_rsa
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

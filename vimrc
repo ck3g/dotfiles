@@ -338,7 +338,7 @@ noremap Q gq
 "make Y consistent with C and D
 nnoremap Y y$
 
-let g:vimrubocop_config = '~/.rubocop.yml'
+let g:vimrubocop_config = '.rubocop.yml'
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
 

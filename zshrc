@@ -16,8 +16,8 @@ alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
 
 ## Babbel repo alliases
-alias update_develop="git pull --rebase origin develop"
-alias update_master="git pull --rebase origin master"
+alias update_develop="git co develop; git pull --rebase origin develop"
+alias update_master="git co master; git pull --rebase origin master"
 
 
 # Set to this to use case-sensitive completion
@@ -69,3 +69,6 @@ eval "$(rbenv init -)"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

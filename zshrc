@@ -57,7 +57,6 @@ export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
 export EDITOR=vim
 
-
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 

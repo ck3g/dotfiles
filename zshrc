@@ -14,6 +14,7 @@ alias zshconfig="vim ~/.zshrc"
 # alias ack="ack-grep"
 alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
+alias workwork="cd /Volumes/Vagrantable/babbel"
 
 ## Babbel repo alliases
 alias update_develop="git co develop; git pull --rebase origin develop"
@@ -64,6 +65,8 @@ export EDITOR=vim
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export PATH="/opt/chefdk/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

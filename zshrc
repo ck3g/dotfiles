@@ -62,6 +62,7 @@ PATH=$PATH:/home/ck3g
 export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
 export EDITOR=vim
+export LC_ALL=en_US.UTF-8
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

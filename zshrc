@@ -14,7 +14,8 @@ alias zshconfig="vim ~/.zshrc"
 # alias ack="ack-grep"
 alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
-alias workwork="cd /Volumes/Vagrantable/babbel"
+alias cdce="cd ~/Developer/GitLab/gdk-ce/gitlab"
+alias cdee="cd ~/Developer/GitLab/gdk-ee/gitlab"
 
 ## Babbel repo alliases
 alias update_develop="git co develop; git pull --rebase origin develop"
@@ -68,6 +69,16 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 export PATH="/opt/chefdk/bin:$PATH"
+
+# For compilers to find libffi you may need to set:
+export LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
+
+# For pkg-config to find libffi you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# For GitLab Development Kit https://gitlab.com/gitlab-org/gitlab-development-kit/blob/master/doc/prepare.md
+export PATH="/usr/local/opt/postgresql@10/bin:/usr/local/opt/node@12/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

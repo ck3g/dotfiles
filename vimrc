@@ -457,9 +457,9 @@ map <Leader>A :call RunAllSpecs()<CR>
 
 if filereadable("Gemfile")
   if has("gui_running")
-    let g:rspec_command = "!bundle exec rspec --no-color {spec}"
+    let g:rspec_command = "!bundle exec rspec -fd --no-color {spec}"
   else
-    let g:rspec_command = "!bundle exec rspec {spec}"
+    let g:rspec_command = "!bundle exec rspec -fd {spec}"
   endif
 endif
 

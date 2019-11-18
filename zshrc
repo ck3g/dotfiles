@@ -14,8 +14,7 @@ alias zshconfig="vim ~/.zshrc"
 # alias ack="ack-grep"
 alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
-alias cdce="cd ~/Developer/GitLab/gdk-ce/gitlab"
-alias cdee="cd ~/Developer/GitLab/gdk-ee/gitlab"
+alias cdgitlab="cd ~/Developer/GitLab/gitlab-development-kit/gitlab"
 
 ## Babbel repo alliases
 alias update_develop="git co develop; git pull --rebase origin develop"
@@ -82,6 +81,8 @@ export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="/usr/local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -83,6 +83,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

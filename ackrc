@@ -13,6 +13,9 @@ js=json,tmpl,jst,coffee
 --type-add
 css=sass,scss
 
+--type-add
+golang=.go
+
 --ignore-dir=.bundle
 --ignore-dir=vendor/bundle
 --ignore-dir=tmp

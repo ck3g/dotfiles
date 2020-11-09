@@ -5,8 +5,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="theunraveler-improved"
-ZSH_THEME="avit-improved"
+# ZSH_THEME="theunraveler-improved"
+# ZSH_THEME="avit-improved"
+ZSH_THEME="avit-improved-minimal"
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
@@ -14,6 +15,7 @@ alias zshconfig="vim ~/.zshrc"
 # alias ack="ack-grep"
 alias be="bundle exec"
 alias vim="/usr/local/bin/vim"
+alias bundle="/Users/ck3g/.rbenv/shims/bundle" # fucking cancer
 alias cdgitlab="cd ~/Developer/GitLab/gitlab-development-kit/gitlab"
 
 ## Babbel repo alliases
@@ -76,8 +78,14 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 # For GitLab Development Kit https://gitlab.com/gitlab-org/gitlab-development-kit/blob/master/doc/prepare.md
-export PATH="/usr/local/opt/postgresql@10/bin:/usr/local/opt/node@12/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@11/bin:/usr/local/opt/node@12/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# brew info icu4c
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -86,9 +94,12 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # Go language path
-export PATH="/usr/local/go/bin:$PATH"
+# export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/Developer/Go:$PATH"
 export PATH="$HOME/Developer/Go/bin:$PATH"
+
+# CUSTOM ENV VARS
+source ~/.env_vars
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -100,3 +111,5 @@ if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+ssh-add -K ~/.ssh/id_ed25519

@@ -22,6 +22,8 @@ alias cdgitlab="cd ~/Developer/GitLab/gitlab-development-kit/gitlab"
 alias update_develop="git co develop; git pull --rebase origin develop"
 alias update_master="git co master; git pull --rebase origin master"
 
+alias notifyme="osascript -e 'display notification \"You were waiting for command to finish. It is done now\" with title \"Work done\"'"
+
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -78,7 +80,7 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 # For GitLab Development Kit https://gitlab.com/gitlab-org/gitlab-development-kit/blob/master/doc/prepare.md
-export PATH="/usr/local/opt/postgresql@11/bin:/usr/local/opt/node@12/bin:$PATH"
+export PATH="/usr/local/opt/node@12/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 # brew info icu4c
@@ -98,6 +100,12 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/Developer/Go:$PATH"
 export PATH="$HOME/Developer/Go/bin:$PATH"
 
+# Golang greenlight project https://github.com/ck3g/greenlight
+export GREENLIGHT_DB_DSN="postgres://greenlight:@localhost/greenlight?sslmode=disable"
+
+# GitLab localhost test: Docker installation (for PagerDuty)
+export GITLAB_HOME=$HOME/gitlab_localhost
+
 # CUSTOM ENV VARS
 source ~/.env_vars
 
@@ -113,3 +121,4 @@ if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 ssh-add -K ~/.ssh/id_ed25519
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"

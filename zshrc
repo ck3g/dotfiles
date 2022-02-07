@@ -74,10 +74,14 @@ eval "$(rbenv init -)"
 export PATH="/opt/chefdk/bin:$PATH"
 
 # For compilers to find libffi you may need to set:
-export LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
+# export LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
 
 # For pkg-config to find libffi you may need to set:
-export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
+# export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+export LDFLAGS="-L/usr/local/opt/libffi/lib"
+export CPPFLAGS="-I/usr/local/opt/libffi/include"
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
 # For GitLab Development Kit https://gitlab.com/gitlab-org/gitlab-development-kit/blob/master/doc/prepare.md
 export PATH="/usr/local/opt/node@12/bin:$PATH"
@@ -100,9 +104,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/Developer/Go:$PATH"
 export PATH="$HOME/Developer/Go/bin:$PATH"
 
-# Golang greenlight project https://github.com/ck3g/greenlight
-export GREENLIGHT_DB_DSN="postgres://greenlight:@localhost/greenlight?sslmode=disable"
-
 # GitLab localhost test: Docker installation (for PagerDuty)
 export GITLAB_HOME=$HOME/gitlab_localhost
 
@@ -114,11 +115,21 @@ source ~/.env_vars
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-ssh-add -K ~/.ssh/id_ed25519
+# The -K and -A flags are deprecated and have been replaced
+# by the --apple-use-keychain and --apple-load-keychain
+# flags, respectively.  To suppress this warning, set the
+# environment variable APPLE_SSH_ADD_BEHAVIOR as described in
+# the ssh-add(1) manual page.
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"

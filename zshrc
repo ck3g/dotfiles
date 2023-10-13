@@ -14,8 +14,8 @@ alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias ack="ack-grep"
 alias be="bundle exec"
-alias vim="/usr/local/bin/vim"
-alias bundle="/Users/ck3g/.rbenv/shims/bundle" # fucking cancer
+# alias vim="/usr/local/bin/vim"
+# alias bundle="/Users/ck3g/.rbenv/shims/bundle" # fucking cancer
 alias cdgitlab="cd ~/Developer/GitLab/gitlab-development-kit/gitlab"
 
 ## Babbel repo alliases
@@ -23,6 +23,8 @@ alias update_develop="git co develop; git pull --rebase origin develop"
 alias update_master="git co master; git pull --rebase origin master"
 
 alias notifyme="osascript -e 'display notification \"You were waiting for command to finish. It is done now\" with title \"Work done\"'"
+
+alias glab="/Users/vtatarintev/Developer/GitLab/cli/bin/glab"
 
 
 # Set to this to use case-sensitive completion
@@ -63,13 +65,13 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$JAVA_HOME # Add JAVA_HOME for keytool (cacert.org)
 PATH=$PATH:/home/ck3g
 
-export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
+# export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
 export EDITOR=vim
 export LC_ALL=en_US.UTF-8
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 export PATH="/opt/chefdk/bin:$PATH"
 
@@ -104,6 +106,9 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/Developer/Go:$PATH"
 export PATH="$HOME/Developer/Go/bin:$PATH"
 
+# Needed for poetry
+export PATH="$HOME/.local/bin:$PATH"
+
 # GitLab localhost test: Docker installation (for PagerDuty)
 export GITLAB_HOME=$HOME/gitlab_localhost
 
@@ -120,12 +125,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 # The -K and -A flags are deprecated and have been replaced
 # by the --apple-use-keychain and --apple-load-keychain
 # flags, respectively.  To suppress this warning, set the
@@ -133,3 +132,14 @@ if [ -f '/Users/ck3g/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 # the ssh-add(1) manual page.
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# Added by GDK bootstrap
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

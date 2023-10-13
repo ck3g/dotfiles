@@ -62,6 +62,10 @@ set number      "add line numbers
 set showbreak=...
 set wrap linebreak nolist
 
+if exists(':tnoremap')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
 set winwidth=85
 " set winheight=28
 
@@ -92,51 +96,51 @@ nmap <Down> gj
 nmap <Up> gk
 set fo=l
 
-"statusline setup
+" statusline setup
 set statusline=%f       "tail of the filename
 
-"Git
-set statusline+=[%{GitBranch()}]
+" Git
+"" set statusline+=[%{GitBranch()}]
 
-"RVM
+" RVM
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 
-"display a warning if fileformat isnt unix
-"set statusline+=%#warningmsg#
-"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"set statusline+=%*
+" display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
 
-"Display a warning if file encoding isnt utf-8
-"set statusline+=%#warningmsg#
-"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"set statusline+=%*
+" Display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
 
-"set statusline+=%h      "help file flag
-"set statusline+=%y      "filetype
-"set statusline+=%r      "read only flag
-"set statusline+=%m      "modified flag
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+set statusline+=%r      "read only flag
+set statusline+=%m      "modified flag
 
-"display a warning if &et is wrong, or we have mixed-indenting
-"set statusline+=%#error#
-"set statusline+=%{StatuslineTabWarning()}
-"set statusline+=%*
-"
-"set statusline+=%{StatuslineTrailingSpaceWarning()}
-"
-"set statusline+=%{StatuslineLongLineWarning()}
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" display a warning if &et is wrong, or we have mixed-indenting
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
 
-"display a warning if &paste is set
-"set statusline+=%#error#
-"set statusline+=%{&paste?'[paste]':''}
-"set statusline+=%*
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+
+set statusline+=%{StatuslineLongLineWarning()}
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
 
 set statusline+=%=      "left/right separator
 
-"set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
 
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -289,8 +293,10 @@ filetype indent on
 syntax on
 
 "some stuff to get the mouse going in term
-set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  set mouse=a
+  set ttymouse=xterm2
+endif
 
 "hide buffers when not displayed
 set hidden

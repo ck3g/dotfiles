@@ -3,6 +3,7 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
+colorscheme gruvbox
 ]])
 
 
@@ -48,7 +49,9 @@ local plugins = {
 
   { 'Bekaboo/deadcolumn.nvim' },
   { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
-  -- { "olimorris/onedarkpro.nvim", priority = 1000 },
+  { "olimorris/onedarkpro.nvim", priority = 1000 },
+  { 'junegunn/seoul256.vim', priority = 1000 },
+  { "savq/melange-nvim", priority = 1000 },
   {
     'romgrk/barbar.nvim',
     dependencies = {
@@ -64,9 +67,15 @@ local plugins = {
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
+  -- { 'github/copilot.vim' },
   -- {
   --  url = "git@gitlab.com:gitlab-org/editor-extensions/gitlab.vim.git",
   --  lazy = false,
+  -- },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   version = false, -- last release is way too old and doesn't work on Windows
+  --   build = ":TSUpdate",
   -- },
 --[[]]--
   {
@@ -112,18 +121,7 @@ local plugins = {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      ensure_installed = {
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "vim",
-        "yaml",
-        "ruby",
-        "go"
-      },
+      ensure_installed = { "html", "javascript", "json", "lua", "markdown", "markdown_inline", "vim", "yaml", "ruby", "go" },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -173,15 +171,19 @@ require("lazy").setup(plugins, opts)
 vim.o.background = "dark" -- or "light" for light mode
 vim.o.termguicolors = true
 require("gruvbox").setup({
-  bold = false
+  bold = false,
+  contrast = "soft",
 })
-vim.cmd([[colorscheme gruvbox]])
--- vim.cmd("colorscheme onedark")
+
+-- vim.cmd([[colorscheme gruvbox]])
+vim.cmd("colorscheme onedark")
+-- vim.cmd("colorscheme melange")
+-- vim.cmd("colorscheme seoul256")
 
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = 'onedark',
   },
   sections = {
     lualine_c = {
@@ -216,6 +218,11 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 --     enabled = false
 --   }
 -- })
+
+-- https://github.com/orgs/community/discussions/16800
+-- vim.g.copilot_node_command = "~/.nvm/versions/node/v16.15.0/bin/node"
+-- vim.g.copilot_node_command = "~/.asdf/shims/node"
+
 
 --[[]]--
 

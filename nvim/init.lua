@@ -67,17 +67,10 @@ local plugins = {
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
-  -- { 'github/copilot.vim' },
-  -- {
-  --  url = "git@gitlab.com:gitlab-org/editor-extensions/gitlab.vim.git",
-  --  lazy = false,
-  -- },
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   version = false, -- last release is way too old and doesn't work on Windows
-  --   build = ":TSUpdate",
-  -- },
+  { 'github/copilot.vim' },
+  { 'mileszs/ack.vim' },
 --[[]]--
+  'RRethy/nvim-treesitter-endwise',
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
@@ -175,8 +168,8 @@ require("gruvbox").setup({
   contrast = "soft",
 })
 
--- vim.cmd([[colorscheme gruvbox]])
-vim.cmd("colorscheme onedark")
+vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd("colorscheme onedark")
 -- vim.cmd("colorscheme melange")
 -- vim.cmd("colorscheme seoul256")
 
@@ -209,15 +202,16 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+require('nvim-treesitter.configs').setup {
+    endwise = {
+        enable = true,
+    },
+}
+
 
 -- Toggle Code Suggestions on/off with CTRL-g in normal mode:
 -- vim.keymap.set('n', '<C-g>', '<Plug>(GitLabToggleCodeSuggestions)')
 
--- require('gitlab').setup({
---   statusline = {
---     enabled = false
---   }
--- })
 
 -- https://github.com/orgs/community/discussions/16800
 -- vim.g.copilot_node_command = "~/.nvm/versions/node/v16.15.0/bin/node"

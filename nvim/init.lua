@@ -28,7 +28,16 @@ local plugins = {
   'tpope/vim-surround',
   'yamatsum/nvim-nonicons',
   'ryanoasis/vim-devicons',
-  -- 'nvim-tree/nvim-tree.lua',
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  },
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
   'scrooloose/nerdtree',
@@ -48,10 +57,23 @@ local plugins = {
   },
 
   { 'Bekaboo/deadcolumn.nvim' },
+  -- COLORSCHEMES
   { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
   { "olimorris/onedarkpro.nvim", priority = 1000 },
   { 'junegunn/seoul256.vim', priority = 1000 },
   { "savq/melange-nvim", priority = 1000 },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} },
+  { 'rmehri01/onenord.nvim' },
+  { 'mhartington/oceanic-next' },
+  { "dgox16/oldworld.nvim", lazy = false, priority = 1000, },
+  { 'kaiuri/nvim-juliana', lazy = false, opts = { --[=[ configuration --]=] }, config = true, },
+  { 'mellow-theme/mellow.nvim' },
+  { "alexmozaidze/palenight.nvim" },
+  { 'lourenci/github-colors' },
+  { 'antonk52/lake.nvim' },
+  { "rose-pine/neovim", name = "rose-pine" },
+  -- END COLORSCHEMES
   {
     'romgrk/barbar.nvim',
     dependencies = {
@@ -69,6 +91,13 @@ local plugins = {
   },
   { 'github/copilot.vim' },
   { 'mileszs/ack.vim' },
+  { "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*",
+    opts = {
+      size = 20,
+      open_mapping = "<c-s>",
+      shade_terminals = false,
+    }
+  },
 --[[]]--
   'RRethy/nvim-treesitter-endwise',
   {
@@ -168,15 +197,17 @@ require("gruvbox").setup({
   contrast = "soft",
 })
 
-vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd("colorscheme onedark")
 -- vim.cmd("colorscheme melange")
 -- vim.cmd("colorscheme seoul256")
+vim.cmd("colorscheme catppuccin-macchiato")
 
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'onedark',
+    -- theme = 'onedark',
+    theme = 'catppuccin-macchiato',
   },
   sections = {
     lualine_c = {

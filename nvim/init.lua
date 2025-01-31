@@ -99,26 +99,39 @@ local plugins = {
     }
   },
   {
-    "neovim/nvim-lspconfig", -- Native LSP Support
+    "neovim/nvim-lspconfig",
     dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup {
-        ensure_installed = { "pyright" }, -- Python LSP
+        ensure_installed = { "pyright", "ruff" }, -- Install both LSPs
       }
 
       local lspconfig = require("lspconfig")
-      lspconfig.pyright.setup({})
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "pyright" },
-      }
-      require("lspconfig").pyright.setup({})
+
+      -- Pyright for Type Checking
+      lspconfig.pyright.setup({
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "strict",
+              useLibraryCodeForTypes = true,
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly", -- Avoid duplicate linting
+            }
+          }
+        }
+      })
+
+      -- Ruff for Fast Linting & Auto-Fixing
+      lspconfig.ruff.setup({
+        init_options = {
+          settings = {
+            -- Only enable linting (auto-import fixes handled by Pyright)
+            args = {}, -- Modify this if you need custom CLI arguments for ruff
+          }
+        }
+      })
     end,
   },
   {
@@ -153,10 +166,11 @@ local plugins = {
       null_ls.setup({
         debug = true,
         sources = {
-          null_ls.builtins.formatting.black.with({
-            extra_args = { "--fast" },
-          }),
+          null_ls.builtins.diagnostics.ruff,
+          null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
           null_ls.builtins.formatting.isort,
+          null_ls.builtins.code_actions.refactoring,
+          null_ls.builtins.code_actions.gitsigns,
         },
       })
     end,
@@ -301,6 +315,10 @@ vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { no
 vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ca", function()
+    vim.lsp.buf.code_action({ context = { only = { "source.fixAll" } }, apply = true })
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

@@ -114,7 +114,17 @@ local plugins = {
         settings = {
           python = {
             analysis = {
-              typeCheckingMode = "strict",
+              -- strict
+              -- typeCheckingMode = "strict",
+
+              -- Matching vscode
+              typeCheckingMode = "off", -- Matches VSCode
+              reportMissingTypeStubs = false,
+              reportOptionalMemberAccess = "none",
+              reportOptionalSubscript = "none",
+              reportOptionalIterable = "none",
+              reportGeneralTypeIssues = "none",
+
               useLibraryCodeForTypes = true,
               autoSearchPaths = true,
               diagnosticMode = "openFilesOnly", -- Avoid duplicate linting

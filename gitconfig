@@ -13,6 +13,7 @@
   aa = add --all
   ff = flow feature
   l = !~/.githelpers
+  lg = !~/.githelpers --graph
   dc = diff --cached
   rc = rebase --continue
 [core]

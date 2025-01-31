@@ -27,7 +27,8 @@ ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/githelpers ~/.githelpers
 ln -s ~/dotfiles/ackrc ~/.ackrc
 ln -s ~/dotfiles/gitignore_global ~/.gitignore_global
-ln -s ~/dotfiles/nvin/init.lua ~/.config/nvim/init.lua
+ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ```
 
 ## vimfiles
@@ -51,6 +52,8 @@ unlink ~/.gitconfig
 unlink ~/.githelpers
 unlink ~/.ackrc
 unlink ~/.gitignore_global
+unlink ~/.config/nvim/init.lua
+unlink ~/.tmux.conf
 rm -rf ~/dotfiles
 ```
 

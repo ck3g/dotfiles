@@ -14,6 +14,7 @@ alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias ack="ack-grep"
 alias be="bundle exec"
+alias pr="poetry run"
 # alias vim="/usr/local/bin/vim"
 # alias bundle="/Users/ck3g/.rbenv/shims/bundle" # fucking cancer
 alias cdgitlab="cd ~/Developer/GitLab/gitlab-development-kit/gitlab"
@@ -45,7 +46,7 @@ alias glab="/Users/vtatarintev/Developer/GitLab/cli/bin/glab"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby battery web-search)
+plugins=(git rails ruby battery web-search poetry)
 
 source $ZSH/oh-my-zsh.sh
 export ZSH=$HOME/.oh-my-zsh
@@ -64,6 +65,7 @@ PATH=$PATH:$HOME/Applications
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$JAVA_HOME # Add JAVA_HOME for keytool (cacert.org)
 PATH=$PATH:/home/ck3g
+PATH=$PATH:$HOME/.asdf/installs/poetry/1.8.4/bin
 
 # export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
@@ -81,7 +83,7 @@ export PATH="/opt/chefdk/bin:$PATH"
 # For pkg-config to find libffi you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-export LDFLAGS="-L/usr/local/opt/libffi/lib"
+# export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export CPPFLAGS="-I/usr/local/opt/libffi/include"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
@@ -92,7 +94,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
 # brew info icu4c
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+# export LDFLAGS="-L/usr/local/opt/icu4c/lib"
 export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 
 ### Added by the Heroku Toolbelt

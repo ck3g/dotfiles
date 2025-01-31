@@ -98,6 +98,69 @@ local plugins = {
       shade_terminals = false,
     }
   },
+  {
+    "neovim/nvim-lspconfig", -- Native LSP Support
+    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup {
+        ensure_installed = { "pyright" }, -- Python LSP
+      }
+
+      local lspconfig = require("lspconfig")
+      lspconfig.pyright.setup({})
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup {
+        ensure_installed = { "pyright" },
+      }
+      require("lspconfig").pyright.setup({})
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp", -- Completion engine
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        debug = true,
+        sources = {
+          null_ls.builtins.formatting.black.with({
+            extra_args = { "--fast" },
+          }),
+          null_ls.builtins.formatting.isort,
+        },
+      })
+    end,
+  },
 --[[]]--
   'RRethy/nvim-treesitter-endwise',
   {
@@ -143,7 +206,7 @@ local plugins = {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      ensure_installed = { "html", "javascript", "json", "lua", "markdown", "markdown_inline", "vim", "yaml", "ruby", "go" },
+      ensure_installed = { "html", "javascript", "json", "lua", "markdown", "markdown_inline", "vim", "yaml", "ruby", "go", "python" },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -189,6 +252,12 @@ require("lazy").setup(plugins, opts)
 -- local icons = require("nvim-nonicons")
 -- local nonicons_extention = require("nvim-nonicons.extentions.lualine")
 
+-- format on save
+vim.cmd [[autocmd BufWritePre *.py lua vim.lsp.buf.format()]]
+
+-- Makes the sign column always visible
+vim.o.signcolumn = "yes"
+
 
 vim.o.background = "dark" -- or "light" for light mode
 vim.o.termguicolors = true
@@ -226,6 +295,12 @@ require('lualine').setup {
     },
   }
 }
+
+-- LSP keybindings
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

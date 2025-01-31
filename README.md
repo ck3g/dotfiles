@@ -7,6 +7,9 @@
 brew install nvim
 brew install ripgrep
 brew install fd
+
+pip install --user black
+pip install --user ruff
 ```
 
 ## Install

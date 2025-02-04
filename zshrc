@@ -65,7 +65,6 @@ PATH=$PATH:$HOME/Applications
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$JAVA_HOME # Add JAVA_HOME for keytool (cacert.org)
 PATH=$PATH:/home/ck3g
-PATH=$PATH:$HOME/.asdf/installs/poetry/1.8.4/bin
 
 # export ARCHFLAGS="-arch i386 -arch x86_64" # fix for mysql gem
 
@@ -145,3 +144,6 @@ if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(/Users/vtatarintev/.local/bin/mise activate zsh)"
+eval "$(mise hook-env)"

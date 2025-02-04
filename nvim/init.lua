@@ -20,6 +20,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function using_bundler()
+    return vim.fn.filereadable(vim.fn.getcwd() .. "/Gemfile.lock") == 1
+end
+
 local plugins = {
   'tpope/vim-fugitive',
   'tpope/vim-rails',
@@ -104,7 +108,14 @@ local plugins = {
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup {
-        ensure_installed = { "pyright", "ruff" }, -- Install both LSPs
+        ensure_installed = {
+          -- Python
+          "pyright",
+          "ruff",
+          -- Ruby
+          "solargraph",
+          "rubocop"
+        },
       }
 
       local lspconfig = require("lspconfig")
@@ -141,6 +152,24 @@ local plugins = {
             args = {}, -- Modify this if you need custom CLI arguments for ruff
           }
         }
+      })
+
+      -- Solargraph with Bundler Support
+      lspconfig.solargraph.setup({
+          cmd = using_bundler() and { "bundle", "exec", "solargraph", "stdio" } or { "solargraph", "stdio" },
+          settings = {
+              solargraph = {
+                  diagnostics = true,
+                  formatting = true,
+                  completion = true,
+                  useBundler = true, -- Uses `bundle exec`
+              }
+          }
+      })
+
+      -- RuboCop LSP with Bundler Support
+      lspconfig.rubocop.setup({
+          cmd = using_bundler() and { "bundle", "exec", "rubocop", "--lsp" } or { "rubocop", "--lsp" },
       })
     end,
   },
@@ -277,7 +306,12 @@ require("lazy").setup(plugins, opts)
 -- local nonicons_extention = require("nvim-nonicons.extentions.lualine")
 
 -- format on save
-vim.cmd [[autocmd BufWritePre *.py lua vim.lsp.buf.format()]]
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.py", "*.rb" },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
 
 -- Makes the sign column always visible
 vim.o.signcolumn = "yes"
@@ -335,6 +369,11 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set("n", "<leader>fm", function()
+  builtin.lsp_document_symbols({
+    symbols = { "Function", "Method" },
+  })
+end, { noremap = true, silent = true })
 
 require('nvim-treesitter.configs').setup {
     endwise = {
@@ -342,6 +381,14 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
+
+-- Automatically restart LSP servers when Gemfile.lock is updated
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "Gemfile.lock",
+  callback = function()
+    vim.cmd("LspRestart")
+  end,
+})
 
 -- Toggle Code Suggestions on/off with CTRL-g in normal mode:
 -- vim.keymap.set('n', '<C-g>', '<Plug>(GitLabToggleCodeSuggestions)')

@@ -88,7 +88,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
 # For GitLab Development Kit https://gitlab.com/gitlab-org/gitlab-development-kit/blob/master/doc/prepare.md
 export PATH="/usr/local/opt/node@12/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 # brew info icu4c
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
@@ -133,11 +133,6 @@ export NVM_DIR="$HOME/.nvm"
 # the ssh-add(1) manual page.
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-# Added by GDK bootstrap
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc'; fi

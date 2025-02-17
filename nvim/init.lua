@@ -103,6 +103,12 @@ local plugins = {
     }
   },
   {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     config = function()
@@ -114,7 +120,10 @@ local plugins = {
           "ruff",
           -- Ruby
           "solargraph",
-          "rubocop"
+          "rubocop",
+          -- JS/React
+          "ts_ls",
+          "eslint"
         },
       }
 
@@ -171,6 +180,23 @@ local plugins = {
       lspconfig.rubocop.setup({
           cmd = using_bundler() and { "bundle", "exec", "rubocop", "--lsp" } or { "rubocop", "--lsp" },
       })
+
+      lspconfig.ts_ls.setup({
+        settings = {
+          completions = {
+            completeFunctionCalls = true
+          }
+        }
+      })
+
+      lspconfig.eslint.setup({
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll"
+          })
+        end
+      })
     end,
   },
   {
@@ -210,6 +236,9 @@ local plugins = {
           null_ls.builtins.formatting.isort,
           null_ls.builtins.code_actions.refactoring,
           null_ls.builtins.code_actions.gitsigns,
+          null_ls.builtins.formatting.prettier.with({
+            filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
+          }),
         },
       })
     end,
@@ -307,7 +336,7 @@ require("lazy").setup(plugins, opts)
 
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.py", "*.rb" },
+    pattern = { "*.py", "*.rb", "*.js", "*.ts", "*.tsx", "*.jsx" },
     callback = function()
         vim.lsp.buf.format()
     end,
@@ -364,6 +393,13 @@ vim.keymap.set("n", "<leader>ca", function()
 end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>i", function()
+  -- Run isort on the current file silently
+  vim.cmd("silent !isort " .. vim.fn.shellescape(vim.fn.expand("%")))
+  -- Reload the file to reflect changes
+  vim.cmd("edit!")
+end, { noremap = true, silent = true })
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
@@ -376,9 +412,12 @@ vim.keymap.set("n", "<leader>fm", function()
 end, { noremap = true, silent = true })
 
 require('nvim-treesitter.configs').setup {
-    endwise = {
-        enable = true,
-    },
+  endwise = {
+    enable = true,
+  },
+  ensure_installed = { "javascript", "typescript", "tsx", "html", "css", "json" },
+  highlight = { enable = true },
+  indent = { enable = true },
 }
 
 

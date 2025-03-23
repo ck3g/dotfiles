@@ -49,7 +49,6 @@ if exists('g:autoclose_loaded') || &cp
     finish
 endif
 
-
 let g:autoclose_loaded = 1
 let s:cotstate = &completeopt
 

@@ -17,7 +17,7 @@
   dc = diff --cached
   rc = rebase --continue
 [core]
-  editor = vim
+  editor = nvim
 	excludesfile = /Users/ck3g/.gitignore_global
 [push]
 	default = simple

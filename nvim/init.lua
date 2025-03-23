@@ -44,8 +44,6 @@ local plugins = {
   },
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
-  'scrooloose/nerdtree',
-  'kien/ctrlp.vim',
   'thoughtbot/vim-rspec',
   'ck3g/vim-change-hash-syntax',
   'ntpeters/vim-better-whitespace',

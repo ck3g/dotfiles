@@ -427,6 +427,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
+-- Set fileformat to unix on read
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   pattern = "*",
+--   callback = function()
+--     vim.bo.fileformat = "unix"
+--   end,
+-- })
+
 -- Toggle Code Suggestions on/off with CTRL-g in normal mode:
 -- vim.keymap.set('n', '<C-g>', '<Plug>(GitLabToggleCodeSuggestions)')
 

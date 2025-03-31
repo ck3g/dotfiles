@@ -222,8 +222,8 @@ local plugins = {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim", },
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
@@ -237,6 +237,7 @@ local plugins = {
           null_ls.builtins.formatting.prettier.with({
             filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
           }),
+          require("none-ls.diagnostics.eslint"),
         },
       })
     end,

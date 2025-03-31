@@ -301,55 +301,6 @@ endif
 "hide buffers when not displayed
 set hidden
 
-"Command-T configuration
-let g:CommandTMaxHeight=10
-let g:CommandTMatchWindowAtTop=1
-
-let macvim_skip_colorscheme=1
-
-if has("gui_running")
-    if has("gui_gnome")
-        set term=gnome-256color
-        colorscheme codeschool
-        set lines=47
-        set columns=162
-        set guifont=Monaco\ 11
-    endif
-
-    if has("gui_mac") || has("gui_macvim")
-
-        set guifont=Menlo:h15
-        colorscheme codeschool
-        set lines=55
-        set columns=192
-        " key binding for Command-T to behave properly
-        " uncomment to replace the Mac Command-T key to Command-T plugin
-        "macmenu &File.New\ Tab key=<nop>
-        "map <D-t> :CommandT<CR>
-        " make Mac's Option key behave as the Meta key
-        set invmmta
-        try
-          set transparency=5
-        catch
-        endtry
-    endif
-
-    if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
-        set enc=utf-8
-    endif
-else
-    "dont load csapprox if there is no gui support - silences an annoying warning
-    let g:CSApprox_loaded = 1
-
-
-    "tell the term has 256 colors
-    set t_Co=256
-
-    colorscheme xoria256
-    set guitablabel=%M%t
-endif
-
 " add spell checking and automatic wrapping at the recommended 72 columns to you commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
@@ -366,9 +317,6 @@ inoremap <C-L> <C-O>:nohls<CR>
 
 "map to bufexplorer
 nnoremap <leader>b :BufExplorer<cr>
-
-"map to CommandT TextMate style finder
-nnoremap <leader>t :CommandT<CR>
 
 "map Q to something useful
 noremap Q gq

@@ -167,6 +167,7 @@ local plugins = {
                   formatting = true,
                   completion = true,
                   useBundler = true, -- Uses `bundle exec`
+                  rubocop = false,
               }
           }
       })

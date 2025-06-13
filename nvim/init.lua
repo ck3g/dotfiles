@@ -116,9 +116,6 @@ local plugins = {
           -- Python
           "pyright",
           "ruff",
-          -- Ruby
-          "solargraph",
-          "rubocop",
           -- JS/React
           "ts_ls",
           "eslint"
@@ -325,6 +322,8 @@ local plugins = {
   }
 --[[]]--
 }
+-- in Neovim 0.11 diagnostics disabled by default
+vim.diagnostic.config({ virtual_text = true })
 
 local opts = {}
 
@@ -333,9 +332,16 @@ require("lazy").setup(plugins, opts)
 -- local icons = require("nvim-nonicons")
 -- local nonicons_extention = require("nvim-nonicons.extentions.lualine")
 
+-- RuboCop plugin settings
+vim.g.vimrubocop_rubocop_cmd = 'bundle exec rubocop '
+vim.g.vimrubocop_config = '.rubocop.yml'
+vim.g.vimrubocop_keymap = 0
+vim.api.nvim_set_keymap('n', '<Leader>r', ':RuboCop<CR>', { noremap = true, silent = true })
+
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.py", "*.rb", "*.js", "*.ts", "*.tsx", "*.jsx" },
+    -- pattern = { "*.py", "*.rb", "*.js", "*.ts", "*.tsx", "*.jsx" },
+    pattern = { "*.py", "*.js", "*.ts", "*.tsx", "*.jsx" },
     callback = function()
         vim.lsp.buf.format()
     end,

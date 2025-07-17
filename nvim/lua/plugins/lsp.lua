@@ -151,21 +151,20 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim" },
     config = function()
       local null_ls = require("null-ls")
+      local sources = {
+        null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+        null_ls.builtins.formatting.isort,
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.formatting.prettier.with({
+          filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
+        }),
+        require("none-ls.diagnostics.eslint"),
+      }
+
       null_ls.setup({
-        debug = true,
-        sources = {
-          null_ls.builtins.diagnostics.ruff,
-          null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-          null_ls.builtins.formatting.isort,
-          null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.code_actions.gitsigns,
-          null_ls.builtins.formatting.prettier.with({
-            filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
-          }),
-          require("none-ls.diagnostics.eslint"),
-          -- Rust formatting
-          null_ls.builtins.formatting.rustfmt,
-        },
+        debug = false,
+        sources = sources,
       })
     end,
   },

@@ -16,6 +16,19 @@
   lg = !~/.githelpers --graph
   dc = diff --cached
   rc = rebase --continue
+  # Additional useful aliases
+  last = log -1 HEAD
+  unstage = reset HEAD --
+  visual = !gitk
+  tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  branches = branch -a
+  tags = tag -l
+  remotes = remote -v
+  aliases = config --get-regexp alias
+  undo = reset --soft HEAD~1
+  amend = commit --amend
+  uncommit = reset --mixed HEAD~
+  precommit = diff --cached --diff-algorithm=minimal -w
 [core]
   editor = nvim
 	excludesfile = /Users/ck3g/.gitignore_global

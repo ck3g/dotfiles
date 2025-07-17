@@ -26,6 +26,58 @@ alias update_master="git co master; git pull --rebase origin master"
 alias notifyme="osascript -e 'display notification \"You were waiting for command to finish. It is done now\" with title \"Work done\"'"
 
 alias glab="/Users/vtatarintev/Developer/GitLab/cli/bin/glab"
+alias cglab="/Users/vtatarintev/Developer/GitLab/community-cli/bin/glab"
+
+# alias gitai="/Users/vtatarintev/Developer/rust/gitai/target/release/gitai"
+
+# Modern CLI tool aliases
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -l --icons --group-directories-first"
+alias la="eza -la --icons --group-directories-first"
+alias tree="eza --tree --icons"
+alias cat="bat"
+alias grep="rg"
+alias find="fd"
+
+# Utility aliases
+alias reload="source ~/.zshrc"
+alias myip="curl -s https://httpbin.org/ip | jq -r '.origin'"
+alias weather="curl -s wttr.in/Berlin"
+
+# Docker aliases
+alias d="docker"
+alias dc="docker compose"
+alias dcu="docker compose up"
+alias dcd="docker compose down"
+alias dcr="docker compose restart"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+
+# Rails development
+alias rs="rails server"
+alias rc="rails console"
+alias rr="rails routes"
+alias rg="rails generate"
+alias rdm="rails db:migrate"
+alias rds="rails db:seed"
+alias rdr="rails db:rollback"
+
+# Ruby/Rails testing
+alias rspec="bundle exec rspec"
+alias rubocop="bundle exec rubocop"
+alias brakeman="bundle exec brakeman"
+
+# Git shortcuts
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add ."
+alias gc="git commit"
+alias gp="git push"
+alias gl="git pull"
+alias gco="git checkout"
+alias gb="git branch"
+alias gd="git diff"
+alias glog="git log --oneline --graph --decorate"
 
 
 # Set to this to use case-sensitive completion
@@ -134,11 +186,20 @@ export NVM_DIR="$HOME/.nvm"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vtatarintev/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 eval "$(/Users/vtatarintev/.local/bin/mise activate zsh)"
 eval "$(mise hook-env)"
+
+# Initialize zoxide for smarter cd
+eval "$(zoxide init zsh)"
+
+# Disable oh-my-zsh theme temporarily for Starship
+ZSH_THEME=""
+
+# Initialize Starship prompt
+eval "$(starship init zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vtatarintev/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vtatarintev/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vtatarintev/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vtatarintev/google-cloud-sdk/completion.zsh.inc'; fi

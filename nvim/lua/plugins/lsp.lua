@@ -14,7 +14,8 @@ return {
           "pyright",
           "ruff",
           "ts_ls",
-          "eslint"
+          "eslint",
+          "rust_analyzer"
         },
       }
 
@@ -83,6 +84,30 @@ return {
           })
         end
       })
+
+      -- Rust analyzer setup
+      lspconfig.rust_analyzer.setup({
+        settings = {
+          ["rust-analyzer"] = {
+            assist = {
+              importEnforceGranularity = true,
+              importPrefix = "crate"
+            },
+            cargo = {
+              allFeatures = true
+            },
+            checkOnSave = {
+              command = "clippy"
+            },
+            inlayHints = {
+              lifetimeElisionHints = {
+                enable = true,
+                useParameterNames = true
+              }
+            }
+          }
+        }
+      })
     end,
   },
   
@@ -138,6 +163,8 @@ return {
             filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
           }),
           require("none-ls.diagnostics.eslint"),
+          -- Rust formatting
+          null_ls.builtins.formatting.rustfmt,
         },
       })
     end,

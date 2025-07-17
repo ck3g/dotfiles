@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.py", "*.js", "*.ts", "*.tsx", "*.jsx" },
+  pattern = { "*.py", "*.js", "*.ts", "*.tsx", "*.jsx", "*.rs" },
   callback = function()
     vim.lsp.buf.format()
   end,

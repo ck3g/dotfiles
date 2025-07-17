@@ -16,6 +16,33 @@ return {
   'elixir-editors/vim-elixir',
   'camdencheek/tree-sitter-dockerfile',
   
+  -- Rust development
+  {
+    'rust-lang/rust.vim',
+    ft = 'rust',
+    config = function()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    'simrat39/rust-tools.nvim',
+    ft = 'rust',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('rust-tools').setup({
+        server = {
+          on_attach = function(_, bufnr)
+            vim.keymap.set('n', '<Leader>ca', '<cmd>RustCodeAction<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<Leader>rr', '<cmd>RustRunnables<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<Leader>rt', '<cmd>RustTest<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<Leader>rd', '<cmd>RustDebuggables<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<Leader>rh', '<cmd>RustHoverActions<CR>', { buffer = bufnr })
+          end
+        }
+      })
+    end
+  },
+  
   -- Editor enhancements
   'ntpeters/vim-better-whitespace',
   'vim-scripts/AutoClose',
@@ -73,7 +100,7 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "html", "javascript", "json", "lua", "markdown", "markdown_inline",
-        "vim", "yaml", "ruby", "go", "python", "typescript", "tsx", "css"
+        "vim", "yaml", "ruby", "go", "python", "typescript", "tsx", "css", "rust"
       },
       incremental_selection = {
         enable = true,

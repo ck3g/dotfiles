@@ -10,6 +10,11 @@ return {
   'thoughtbot/vim-rspec',
   'ck3g/vim-change-hash-syntax',
   'ngmy/vim-rubocop',
+  'tpope/vim-bundler',
+  
+  -- Additional vim plugins from bundle
+  'elixir-editors/vim-elixir',
+  'camdencheek/tree-sitter-dockerfile',
   
   -- Editor enhancements
   'ntpeters/vim-better-whitespace',

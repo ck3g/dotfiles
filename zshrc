@@ -192,11 +192,10 @@ eval "$(mise hook-env)"
 # Initialize zoxide for smarter cd
 eval "$(zoxide init zsh)"
 
-# Disable oh-my-zsh theme temporarily for Starship
-ZSH_THEME=""
+# Starship disabled - using oh-my-zsh theme instead
 
 # Initialize Starship prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/vtatarintev/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vtatarintev/google-cloud-sdk/path.zsh.inc'; fi

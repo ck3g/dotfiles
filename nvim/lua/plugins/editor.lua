@@ -49,7 +49,7 @@ return {
   'mileszs/ack.vim',
   
   -- Copilot
-  { 'github/copilot.vim' },
+  -- { 'github/copilot.vim' },
   
   -- Telescope
   {

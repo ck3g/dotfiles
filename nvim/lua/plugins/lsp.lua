@@ -15,7 +15,8 @@ return {
           "ruff",
           "ts_ls",
           "eslint",
-          "rust_analyzer"
+          "rust_analyzer",
+          "gopls"
         },
       }
 
@@ -108,6 +109,39 @@ return {
           }
         }
       })
+
+      -- Go LSP setup
+      lspconfig.gopls.setup({
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+        on_attach = function(client, bufnr)
+          -- Format on save
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*.go",
+            callback = function()
+              local params = vim.lsp.util.make_range_params()
+              params.context = {only = {"source.organizeImports"}}
+              local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+              for cid, res in pairs(result or {}) do
+                for _, r in pairs(res.result or {}) do
+                  if r.edit then
+                    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                    vim.lsp.util.apply_workspace_edit(r.edit, enc)
+                  end
+                end
+              end
+              vim.lsp.buf.format()
+            end,
+          })
+        end,
+      })
     end,
   },
   
@@ -159,6 +193,8 @@ return {
         null_ls.builtins.formatting.prettier.with({
           filetypes = { "javascript", "typescript", "json", "css", "html", "yaml", "tsx" },
         }),
+        null_ls.builtins.formatting.goimports,
+        null_ls.builtins.formatting.gofumpt,
         require("none-ls.diagnostics.eslint"),
       }
 
